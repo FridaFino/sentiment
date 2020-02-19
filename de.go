@@ -16,8 +16,8 @@ import (
 // IMDB datasets, and a map of models to add the model
 // to. It'll return any errors if there were any.
 func TrainGermanModel(modelMap Models) error {
-	pos, posErr := filepath.Abs("datasets/train/de/pos")
-	neg, negErr := filepath.Abs("datasets/train/de/neg")
+	pos, posErr := "./datasets/train/de/pos" // filepath.Abs("datasets/train/de/pos")
+	neg, negErr := "./datasets/train/de/neg" // filepath.Abs("datasets/train/de/neg")
 	if posErr != nil || negErr != nil {
 		return fmt.Errorf("Error getting the IMDB German review dataset from expected paths. Are you in the project directory???\n\tNegative Sample Error: %v\n\tPositive Sample Error: %v\n", negErr, posErr)
 	}
