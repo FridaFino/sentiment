@@ -1,6 +1,9 @@
 package sentiment
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 var model Models
 
@@ -256,6 +259,11 @@ func TestAssholeSentimentAnalysisShouldPass1(t *testing.T) {
 	transcript := `Thank you. It's true, and these are the best and the finest. When Mexico sends its people, they're not sending their best. They're not sending you. They're not sending you. They're sending people that have lots of problems, and they're bringing those problems with us. They're bringing drugs. They're bringing crime. They're rapists. And some, I assume, are good people. But I speak to border guards and they tell us what we're getting. And it only makes common sense. It only makes common sense. They're sending us not the right people. It's coming from more than Mexico. It's coming from all over South and Latin America, and it's coming probably -- probably -- from the Middle East. But we don't know. Because we have no protection and we have no competence, we don't know what's happening. And it's got to stop and it's got to stop fast.`
 
 	analysis := model.SentimentAnalysis(transcript, English)
+
+	fmt.Println(analysis.Language)
+	fmt.Println(analysis.Words)
+	fmt.Println(analysis.Sentences)
+	fmt.Println(analysis.Score)
 
 	if analysis.Score != uint8(0) {
 		t.Errorf("Analysis of transcript should be less than 0.5\n\treturned %v\n", analysis.Score)

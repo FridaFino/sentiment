@@ -91,6 +91,11 @@ func Train() (Models, error) {
 		return nil, fmt.Errorf("Count not train English sentiment model!\n\t%v\n", err)
 	}
 
+	err = TrainGermanModel(models)
+	if err != nil {
+		return nil, fmt.Errorf("Count not train German sentiment model!\n\t%v\n", err)
+	}
+
 	err = os.MkdirAll(TempDirectory, os.ModePerm)
 	if err != nil {
 		return nil, fmt.Errorf("Count not create temp directory!\n\t%v\n", err)
