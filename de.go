@@ -16,11 +16,8 @@ import (
 // IMDB datasets, and a map of models to add the model
 // to. It'll return any errors if there were any.
 func TrainGermanModel(modelMap Models) error {
-	pos, posErr := "./datasets/train/de/pos" // filepath.Abs("datasets/train/de/pos")
-	neg, negErr := "./datasets/train/de/neg" // filepath.Abs("datasets/train/de/neg")
-	if posErr != nil || negErr != nil {
-		return fmt.Errorf("Error getting the IMDB German review dataset from expected paths. Are you in the project directory???\n\tNegative Sample Error: %v\n\tPositive Sample Error: %v\n", negErr, posErr)
-	}
+	pos := "./datasets/train/de/pos" // filepath.Abs("datasets/train/de/pos")
+	neg := "./datasets/train/de/neg" // filepath.Abs("datasets/train/de/neg")
 
 	var ct int
 
@@ -76,8 +73,8 @@ func TrainGermanModel(modelMap Models) error {
 	now := time.Now()
 	fmt.Printf("Starting munging from < %v, %v > to data at %v\n", pos, neg, now)
 
-	posErr = walk(pos)
-	negErr = walk(neg)
+	posErr := walk(pos)
+	negErr := walk(neg)
 	if posErr != nil || negErr != nil {
 		return fmt.Errorf("Error training german sentiment model!\n\tPositive Error: %v\n\tNegative Error: %v\n", posErr, negErr)
 	}
